@@ -1,0 +1,20 @@
+{
+  "id": "terminal_subniveles_cromo",
+  "lineas": [
+    {
+      "hablante": "Terminal",
+      "texto": "Conexión inestable. Nodo de servicio C-17 en espera.",
+      "expresion": "interferencia"
+    },
+    {
+      "hablante": "Diroka",
+      "texto": "Alguien borró el registro, pero dejó abierta la ruta de acceso.",
+      "expresion": "desconfiado"
+    },
+    {
+      "hablante": "Terminal",
+      "texto": "Credencial desconocida. Acceso a los Subniveles de Cromo denegado.",
+      "expresion": "alerta"
+    }
+  ]
+}

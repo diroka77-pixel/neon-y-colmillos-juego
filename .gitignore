@@ -1,0 +1,10 @@
+.godot/
+.codex/
+.godot-bin/
+.godot-templates/
+build/
+godot.zip
+templates.tpz
+.debug.keystore
+*.keystore
+
