@@ -24,7 +24,7 @@ func _ready() -> void:
 func _preparar_materiales() -> void:
 	metal_oscuro = _material(Color("111720"), 0.78, 0.46)
 	metal_medio = _material(Color("27333d"), 0.72, 0.38)
-	suelo_material = _material(Color("1b2730"), 0.48, 0.68)
+	suelo_material = _material(Color("273640"), 0.48, 0.62)
 	cian = _material_emisivo(Color("0c4854"), Color("22e4ee"), 3.0)
 	magenta = _material_emisivo(Color("53112f"), Color("f3268d"), 3.2)
 	rojo = _material_emisivo(Color("46121c"), Color("d8213d"), 2.4)
@@ -36,14 +36,14 @@ func _configurar_ambiente() -> void:
 	entorno.background_color = Color("04070d")
 	entorno.background_energy_multiplier = 0.7
 	entorno.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
-	entorno.ambient_light_color = Color("253346")
-	entorno.ambient_light_energy = 0.48
+	entorno.ambient_light_color = Color("344b5b")
+	entorno.ambient_light_energy = 0.68
 	entorno.reflected_light_source = Environment.REFLECTION_SOURCE_DISABLED
 	entorno.tonemap_mode = Environment.TONE_MAPPER_ACES
 	entorno.fog_enabled = true
 	entorno.fog_light_color = Color("152536")
-	entorno.fog_light_energy = 0.35
-	entorno.fog_density = 0.018
+	entorno.fog_light_energy = 0.28
+	entorno.fog_density = 0.010
 	entorno.fog_sky_affect = 0.0
 	var mundo := WorldEnvironment.new()
 	mundo.environment = entorno
@@ -52,7 +52,7 @@ func _configurar_ambiente() -> void:
 	var luna := DirectionalLight3D.new()
 	luna.rotation_degrees = Vector3(-58, -28, 0)
 	luna.light_color = Color("738aa8")
-	luna.light_energy = 0.42
+	luna.light_energy = 0.58
 	luna.shadow_enabled = true
 	luna.directional_shadow_max_distance = 28.0
 	add_child(luna)
@@ -93,7 +93,6 @@ func _construir_callejon() -> void:
 	_crear_charco(Vector3(-2.3, 0.012, 2.8), Vector2(3.3, 1.5), Color("1d5f72"))
 	_crear_charco(Vector3(5.8, 0.014, 1.2), Vector2(2.2, 1.0), Color("5a184b"))
 	_crear_desague(Vector3(1.6, 0.018, -1.8))
-	_crear_vapor(Vector3(-9.2, 0.1, 1.5))
 	_crear_vapor(Vector3(9.5, 0.1, -4.2))
 
 	_crear_luz(Vector3(-5.8, 3.0, -5.8), Color("27e7f1"), 2.7, 7.0, true)

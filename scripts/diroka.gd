@@ -24,6 +24,7 @@ const TEXTURAS_CANON := {
 func _ready() -> void:
 	_construir_modelo()
 	_activar_sprite_canon()
+	_crear_sombra_contacto()
 
 
 func _physics_process(delta: float) -> void:
@@ -63,7 +64,7 @@ func _animar_modelo(delta: float, intensidad: float) -> void:
 		tiempo_paso += delta * 8.0
 		modelo.position.y = absf(sin(tiempo_paso)) * 0.035
 		if sprite_canon != null:
-			sprite_canon.position.y = 1.42 + absf(sin(tiempo_paso)) * 0.045
+			sprite_canon.position.y = 1.56 + absf(sin(tiempo_paso)) * 0.04
 			sprite_canon.rotation.z = sin(tiempo_paso) * 0.012
 		for i in range(brazos.size()):
 			brazos[i].rotation.x = sin(tiempo_paso + float(i) * PI) * 0.25
@@ -73,7 +74,7 @@ func _animar_modelo(delta: float, intensidad: float) -> void:
 		tiempo_paso += delta * 1.6
 		modelo.position.y = sin(tiempo_paso) * 0.012
 		if sprite_canon != null:
-			sprite_canon.position.y = 1.42 + sin(tiempo_paso) * 0.012
+			sprite_canon.position.y = 1.56 + sin(tiempo_paso) * 0.01
 			sprite_canon.rotation.z = lerp(sprite_canon.rotation.z, 0.0, delta * 6.0)
 		for brazo in brazos:
 			brazo.rotation.x = lerp(brazo.rotation.x, 0.0, delta * 6.0)
@@ -84,13 +85,37 @@ func _activar_sprite_canon() -> void:
 	sprite_canon = Sprite3D.new()
 	sprite_canon.name = "DirokaCanon"
 	sprite_canon.texture = TEXTURAS_CANON[vista_actual]
-	sprite_canon.position = Vector3(0, 1.42, 0)
-	sprite_canon.pixel_size = 0.0043
+	sprite_canon.position = Vector3(0, 1.56, 0)
+	sprite_canon.pixel_size = 0.00475
 	sprite_canon.billboard = BaseMaterial3D.BILLBOARD_FIXED_Y
 	sprite_canon.shaded = false
 	sprite_canon.double_sided = true
 	sprite_canon.alpha_cut = SpriteBase3D.ALPHA_CUT_DISCARD
 	add_child(sprite_canon)
+
+
+func _crear_sombra_contacto() -> void:
+	var imagen := Image.create(64, 64, false, Image.FORMAT_RGBA8)
+	for y in range(64):
+		for x in range(64):
+			var dx := (float(x) - 31.5) / 31.5
+			var dy := (float(y) - 31.5) / 31.5
+			var distancia := sqrt(dx * dx + dy * dy)
+			var alfa := clampf(1.0 - distancia, 0.0, 1.0)
+			alfa = alfa * alfa * 0.48
+			imagen.set_pixel(x, y, Color(0.0, 0.0, 0.0, alfa))
+	var material := StandardMaterial3D.new()
+	material.albedo_texture = ImageTexture.create_from_image(imagen)
+	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	var plano := PlaneMesh.new()
+	plano.size = Vector2(1.35, 0.72)
+	plano.material = material
+	var sombra := MeshInstance3D.new()
+	sombra.name = "SombraContacto"
+	sombra.position.y = 0.045
+	sombra.mesh = plano
+	add_child(sombra)
 
 
 func _actualizar_vista(entrada: Vector2) -> void:

@@ -4,6 +4,8 @@ RPG isométrico 3D para Android y Windows, creado con Godot 4.7.2 y GDScript. La
 
 La guía que fija el aspecto de personajes y escenarios está en `docs/DIRECCION_VISUAL.md`.
 
+El avance de los hitos, los recursos provisionales y sus licencias se registran en `docs/ESTADO.md`, `docs/PENDIENTES.md` y `docs/LICENCIAS.md`.
+
 ## Descargar e instalar la APK desde el móvil
 
 1. Abre el repositorio en GitHub y entra en la pestaña **Actions**.

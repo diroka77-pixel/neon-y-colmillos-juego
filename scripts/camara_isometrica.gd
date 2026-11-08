@@ -11,10 +11,10 @@ func _ready() -> void:
 	camara = Camera3D.new()
 	camara.name = "Camera3D"
 	camara.projection = Camera3D.PROJECTION_ORTHOGONAL
-	camara.size = 9.2
+	camara.size = 8.6
 	camara.near = 0.1
 	camara.far = 65.0
-	camara.position = Vector3(8.2, 9.6, 8.2)
+	camara.position = Vector3(7.8, 9.2, 7.8)
 	add_child(camara)
 	camara.look_at(Vector3(0, 0.95, 0), Vector3.UP)
 	camara.current = true
