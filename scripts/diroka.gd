@@ -8,12 +8,22 @@ var direccion_tactil := Vector2.ZERO
 var tiempo_paso := 0.0
 var brazos: Array[Node3D] = []
 var faldones: Array[Node3D] = []
+var sprite_canon: Sprite3D
+var vista_actual := "front_left"
+
+const TEXTURAS_CANON := {
+	"front_left": preload("res://assets/characters/diroka/idle_front_left.png"),
+	"front_right": preload("res://assets/characters/diroka/idle_front_right.png"),
+	"back_left": preload("res://assets/characters/diroka/idle_back_left.png"),
+	"back_right": preload("res://assets/characters/diroka/idle_back_right.png")
+}
 
 @onready var modelo: Node3D = $Modelo
 
 
 func _ready() -> void:
 	_construir_modelo()
+	_activar_sprite_canon()
 
 
 func _physics_process(delta: float) -> void:
@@ -40,6 +50,7 @@ func _physics_process(delta: float) -> void:
 	if direccion.length_squared() > 0.01:
 		rotation.y = lerp_angle(rotation.y, atan2(direccion.x, direccion.z), 1.0 - exp(-12.0 * delta))
 	move_and_slide()
+	_actualizar_vista(entrada)
 	_animar_modelo(delta, direccion.length())
 
 
@@ -51,6 +62,9 @@ func _animar_modelo(delta: float, intensidad: float) -> void:
 	if intensidad > 0.05:
 		tiempo_paso += delta * 8.0
 		modelo.position.y = absf(sin(tiempo_paso)) * 0.035
+		if sprite_canon != null:
+			sprite_canon.position.y = 1.42 + absf(sin(tiempo_paso)) * 0.045
+			sprite_canon.rotation.z = sin(tiempo_paso) * 0.012
 		for i in range(brazos.size()):
 			brazos[i].rotation.x = sin(tiempo_paso + float(i) * PI) * 0.25
 		for i in range(faldones.size()):
@@ -58,8 +72,38 @@ func _animar_modelo(delta: float, intensidad: float) -> void:
 	else:
 		tiempo_paso += delta * 1.6
 		modelo.position.y = sin(tiempo_paso) * 0.012
+		if sprite_canon != null:
+			sprite_canon.position.y = 1.42 + sin(tiempo_paso) * 0.012
+			sprite_canon.rotation.z = lerp(sprite_canon.rotation.z, 0.0, delta * 6.0)
 		for brazo in brazos:
 			brazo.rotation.x = lerp(brazo.rotation.x, 0.0, delta * 6.0)
+
+
+func _activar_sprite_canon() -> void:
+	modelo.visible = false
+	sprite_canon = Sprite3D.new()
+	sprite_canon.name = "DirokaCanon"
+	sprite_canon.texture = TEXTURAS_CANON[vista_actual]
+	sprite_canon.position = Vector3(0, 1.42, 0)
+	sprite_canon.pixel_size = 0.0043
+	sprite_canon.billboard = BaseMaterial3D.BILLBOARD_FIXED_Y
+	sprite_canon.shaded = false
+	sprite_canon.double_sided = true
+	sprite_canon.alpha_cut = SpriteBase3D.ALPHA_CUT_DISCARD
+	add_child(sprite_canon)
+
+
+func _actualizar_vista(entrada: Vector2) -> void:
+	if entrada.length_squared() < 0.02 or sprite_canon == null:
+		return
+	var nueva_vista: String
+	if entrada.y < -0.15:
+		nueva_vista = "back_right" if entrada.x > 0.15 else "back_left"
+	else:
+		nueva_vista = "front_right" if entrada.x > 0.15 else "front_left"
+	if nueva_vista != vista_actual:
+		vista_actual = nueva_vista
+		sprite_canon.texture = TEXTURAS_CANON[vista_actual]
 
 
 func _construir_modelo() -> void:
