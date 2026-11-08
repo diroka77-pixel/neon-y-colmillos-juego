@@ -1,6 +1,8 @@
-# Neón y Colmillos — Fase 1
+# Neón y Colmillos — Corte vertical
 
-Base técnica de un RPG isométrico 3D para Android y Windows, creado con Godot 4.7.2 y GDScript. Esta fase contiene movimiento, cámara isométrica, un callejón cyberpunk tridimensional, controles multiplataforma y un diálogo sencillo. Todavía no incluye combate, inventario ni historia del juego.
+RPG isométrico 3D para Android y Windows, creado con Godot 4.7.2 y GDScript. La base contiene movimiento, cámara isométrica, un callejón cyberpunk tridimensional, controles multiplataforma y un diálogo sencillo. El primer corte vertical visual añade arquitectura por capas, materiales procedurales y una representación provisional de Diroka basada en su diseño canónico. Todavía no incluye combate, inventario ni historia del juego.
+
+La guía que fija el aspecto de personajes y escenarios está en `docs/DIRECCION_VISUAL.md`.
 
 ## Descargar e instalar la APK desde el móvil
 
@@ -32,6 +34,7 @@ Al acercarse a la terminal aparece el aviso **Acción**. El diálogo avanza toca
 - `assets/placeholder/`: recursos provisionales creados para el proyecto.
 - `data/dialogos/`: diálogos en JSON.
 - `data/ui.json`: todos los textos visibles de la interfaz.
+- `docs/DIRECCION_VISUAL.md`: canon visual, presupuestos de recursos y orden de producción.
 - `export_presets.cfg`: exportaciones de Android y Windows.
 - `.github/workflows/build.yml`: compilación automática en GitHub Actions.
 

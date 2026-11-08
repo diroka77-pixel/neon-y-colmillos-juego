@@ -70,6 +70,8 @@ func _construir_modelo() -> void:
 	var pelo := _material(Color("08090d"), 0.05, 0.72)
 	var rojo := _material_emisivo(Color("a71331"), Color("df1749"), 1.7)
 	var verde := _material_emisivo(Color("31b878"), Color("66ffc0"), 2.5)
+	var cian := _material_emisivo(Color("075565"), Color("29e9ff"), 3.2)
+	var hebilla := _material(Color("94714c"), 0.8, 0.25)
 
 	_crear_cilindro("PiernaIzq", Vector3(-0.2, 0.52, 0), 0.13, 0.9, cuero)
 	_crear_cilindro("PiernaDer", Vector3(0.2, 0.52, 0), 0.13, 0.9, cuero)
@@ -77,6 +79,8 @@ func _construir_modelo() -> void:
 	_crear_caja("BotaDer", Vector3(0.2, 0.11, 0.08), Vector3(0.3, 0.25, 0.48), cuero_claro)
 	_crear_caja("Torso", Vector3(0, 1.48, 0), Vector3(0.78, 1.05, 0.43), cuero_claro)
 	_crear_caja("Pecho", Vector3(0, 1.62, 0.235), Vector3(0.7, 0.62, 0.06), metal)
+	_crear_caja("CorreaPecho", Vector3(0.05, 1.64, 0.275), Vector3(0.12, 0.7, 0.045), cuero)
+	_crear_caja("HebillaPecho", Vector3(0.05, 1.67, 0.305), Vector3(0.19, 0.16, 0.035), hebilla)
 
 	_crear_esfera("HombroIzq", Vector3(-0.49, 1.78, 0), Vector3(0.22, 0.2, 0.24), metal)
 	_crear_esfera("HombroDer", Vector3(0.49, 1.78, 0), Vector3(0.22, 0.2, 0.24), metal)
@@ -100,8 +104,15 @@ func _construir_modelo() -> void:
 	var placa := _crear_caja("ImplanteMejilla", Vector3(0.205, 2.20, 0.274), Vector3(0.18, 0.19, 0.035), metal)
 	placa.rotation_degrees.z = -12.0
 	_crear_caja("BordeImplante", Vector3(0.2, 2.305, 0.297), Vector3(0.21, 0.035, 0.025), _material(Color("aeb8c3"), 0.9, 0.2))
+	var implante_sien := _crear_caja("ImplanteSienCian", Vector3(0.245, 2.43, 0.205), Vector3(0.12, 0.095, 0.035), cian)
+	implante_sien.rotation_degrees.z = -32.0
 
 	_crear_caja("LineaAbrigo", Vector3(-0.22, 1.42, 0.27), Vector3(0.055, 1.5, 0.035), rojo)
+	_crear_caja("LuzHombroIzq", Vector3(-0.49, 1.84, 0.16), Vector3(0.08, 0.28, 0.04), rojo)
+	_crear_caja("LuzHombroDer", Vector3(0.49, 1.84, 0.16), Vector3(0.08, 0.28, 0.04), rojo)
+	for y in [1.35, 1.15, 0.95]:
+		_crear_caja("CinturonAbrigo", Vector3(0, y, 0.255), Vector3(0.72, 0.055, 0.04), cuero)
+		_crear_caja("HebillaAbrigo", Vector3(0, y, 0.286), Vector3(0.14, 0.1, 0.025), hebilla)
 	for datos in [["FaldonIzq", -0.23, -0.14], ["FaldonDer", 0.23, 0.14]]:
 		var pivote := Node3D.new()
 		pivote.name = datos[0]

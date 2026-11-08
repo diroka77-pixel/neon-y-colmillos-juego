@@ -61,6 +61,10 @@ func _configurar_ambiente() -> void:
 func _construir_callejon() -> void:
 	_crear_caja("Suelo", Vector3(0, -0.16, 0), Vector3(24, 0.3, 15), suelo_material, true)
 	_crear_rejilla_suelo()
+	var detalle := RefugioVisual.new()
+	detalle.name = "RefugioVisual"
+	add_child(detalle)
+	detalle.construir()
 
 	_crear_caja("EdificioNorte", Vector3(0, 2.5, -8.0), Vector3(25, 5.2, 1.2), metal_oscuro, true)
 	_crear_caja("EdificioSur", Vector3(0, 2.0, 8.0), Vector3(25, 4.2, 1.2), metal_oscuro, true)
