@@ -1,66 +1,19 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://scripts/diroka.gd" id="1_diroka"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_diroka"]
-size = Vector2(12, 20)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_diroka"]
+radius = 0.34
+height = 1.8
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_diroka"]
-animations = [{
-"frames": [],
-"loop": true,
-"name": &"idle_abajo",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"idle_arriba",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"idle_derecha",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"idle_izquierda",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"walk_abajo",
-"speed": 8.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"walk_arriba",
-"speed": 8.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"walk_derecha",
-"speed": 8.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"walk_izquierda",
-"speed": 8.0
-}]
-
-[node name="Diroka" type="CharacterBody2D"]
+[node name="Diroka" type="CharacterBody3D"]
 collision_layer = 1
 collision_mask = 1
 script = ExtResource("1_diroka")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_diroka")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+position = Vector3(0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_diroka")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_diroka")
-animation = &"idle_abajo"
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position_smoothing_enabled = true
-position_smoothing_speed = 5.0
+[node name="Modelo" type="Node3D" parent="."]
 

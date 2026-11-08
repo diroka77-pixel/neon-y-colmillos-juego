@@ -32,9 +32,9 @@ func _gui_input(evento: InputEvent) -> void:
 
 func _draw() -> void:
 	var centro := size * 0.5
-	var color := Color(0.84, 0.12, 0.43, 0.78 if presionado else 0.58)
-	draw_circle(centro, 43.0, Color(0.05, 0.05, 0.09, 0.5))
-	draw_arc(centro, 42.0, 0.0, TAU, 48, color, 3.0)
+	var color := Color(0.84, 0.12, 0.43, 0.72 if presionado else 0.48)
+	draw_circle(centro, 40.0, Color(0.03, 0.03, 0.06, 0.42))
+	draw_arc(centro, 39.0, 0.0, TAU, 48, color, 2.5)
 	var fuente := ThemeDB.fallback_font
 	var tamano := 16
 	var ancho := fuente.get_string_size(texto, HORIZONTAL_ALIGNMENT_LEFT, -1, tamano).x

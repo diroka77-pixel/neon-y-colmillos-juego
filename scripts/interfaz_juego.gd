@@ -25,8 +25,8 @@ func _construir() -> void:
 	add_child(raiz)
 
 	var barras := VBoxContainer.new()
-	barras.position = Vector2(14, 12)
-	barras.size = Vector2(190, 54)
+	barras.position = Vector2(20, 18)
+	barras.size = Vector2(210, 54)
 	barras.add_theme_constant_override("separation", 4)
 	raiz.add_child(barras)
 	_crear_barra(barras, textos.get("vida", ""), 82, Color("b9203c"))
@@ -57,10 +57,10 @@ func _construir() -> void:
 	var joystick := JoystickVirtual.new()
 	joystick.anchor_top = 1.0
 	joystick.anchor_bottom = 1.0
-	joystick.offset_left = 18
-	joystick.offset_top = -130
-	joystick.offset_right = 130
-	joystick.offset_bottom = -18
+	joystick.offset_left = 24
+	joystick.offset_top = -136
+	joystick.offset_right = 136
+	joystick.offset_bottom = -24
 	joystick.direccion_cambiada.connect(jugador.establecer_direccion_tactil)
 	controles_tactiles.add_child(joystick)
 
@@ -70,10 +70,10 @@ func _construir() -> void:
 	boton_accion.anchor_right = 1.0
 	boton_accion.anchor_top = 1.0
 	boton_accion.anchor_bottom = 1.0
-	boton_accion.offset_left = -126
-	boton_accion.offset_top = -126
-	boton_accion.offset_right = -22
-	boton_accion.offset_bottom = -22
+	boton_accion.offset_left = -132
+	boton_accion.offset_top = -132
+	boton_accion.offset_right = -28
+	boton_accion.offset_bottom = -28
 	boton_accion.pulsado.connect(_pulsar_accion)
 	controles_tactiles.add_child(boton_accion)
 
@@ -127,7 +127,7 @@ func _pulsar_accion() -> void:
 
 func _abrir_dialogo(ruta: String) -> void:
 	jugador.set_physics_process(false)
-	jugador.velocity = Vector2.ZERO
+	jugador.velocity = Vector3.ZERO
 	controles_tactiles.visible = false
 	aviso.visible = false
 	dialogo.abrir(ruta)

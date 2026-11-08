@@ -5,7 +5,7 @@ signal direccion_cambiada(direccion: Vector2)
 
 var identificador_tactil := -1
 var direccion := Vector2.ZERO
-var radio := 48.0
+var radio := 43.0
 
 
 func _ready() -> void:
@@ -49,7 +49,7 @@ func _liberar() -> void:
 
 func _draw() -> void:
 	var centro := size * 0.5
-	draw_circle(centro, 50.0, Color(0.05, 0.08, 0.11, 0.52))
-	draw_arc(centro, 49.0, 0.0, TAU, 48, Color(0.2, 0.88, 0.93, 0.55), 2.0)
-	draw_circle(centro + direccion * radio, 21.0, Color(0.22, 0.86, 0.91, 0.68))
+	draw_circle(centro, 46.0, Color(0.03, 0.05, 0.08, 0.42))
+	draw_arc(centro, 45.0, 0.0, TAU, 48, Color(0.2, 0.88, 0.93, 0.48), 2.0)
+	draw_circle(centro + direccion * radio, 18.0, Color(0.22, 0.86, 0.91, 0.58))
 

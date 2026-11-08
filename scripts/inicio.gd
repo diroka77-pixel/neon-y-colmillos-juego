@@ -15,7 +15,7 @@ func _construir_interfaz() -> void:
 	$Interfaz.add_child(fondo)
 
 	var brillo := ColorRect.new()
-	brillo.color = Color(0.02, 0.35, 0.42, 0.18)
+	brillo.color = Color(0.02, 0.35, 0.42, 0.12)
 	brillo.anchor_left = 0.18
 	brillo.anchor_top = 0.34
 	brillo.anchor_right = 0.82
@@ -26,23 +26,29 @@ func _construir_interfaz() -> void:
 	contenedor.alignment = BoxContainer.ALIGNMENT_CENTER
 	contenedor.add_theme_constant_override("separation", 30)
 	contenedor.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
-	contenedor.position = Vector2(-180, -65)
-	contenedor.size = Vector2(360, 130)
+	contenedor.position = Vector2(-250, -100)
+	contenedor.size = Vector2(500, 200)
 	fondo.add_child(contenedor)
 
 	var titulo := Label.new()
 	titulo.text = textos.get("titulo", "")
 	titulo.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	titulo.add_theme_font_size_override("font_size", 30)
+	titulo.add_theme_font_size_override("font_size", 42)
 	titulo.add_theme_color_override("font_color", Color("d9faff"))
 	titulo.add_theme_color_override("font_shadow_color", Color("e21b78"))
 	titulo.add_theme_constant_override("shadow_offset_x", 2)
 	titulo.add_theme_constant_override("shadow_offset_y", 2)
 	contenedor.add_child(titulo)
+	var subtitulo := Label.new()
+	subtitulo.text = textos.get("subtitulo", "")
+	subtitulo.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	subtitulo.add_theme_font_size_override("font_size", 15)
+	subtitulo.add_theme_color_override("font_color", Color("6fcbd2"))
+	contenedor.add_child(subtitulo)
 
 	var boton := Button.new()
 	boton.text = textos.get("empezar", "")
-	boton.custom_minimum_size = Vector2(190, 48)
+	boton.custom_minimum_size = Vector2(220, 52)
 	boton.focus_mode = Control.FOCUS_ALL
 	boton.add_theme_font_size_override("font_size", 18)
 	boton.add_theme_stylebox_override("normal", _estilo_boton(Color("182633"), Color("35e2ee")))
